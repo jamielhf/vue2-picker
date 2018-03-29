@@ -18,9 +18,8 @@ export default {
       t(){
         this.$picker.show({
           type:'datePicker',
-          years:[1990,2020],
           date:this.date,
-          endTime:'',
+          endTime:'2015-02-11',
           onOk:(e)=>{
             this.date = e;
           },

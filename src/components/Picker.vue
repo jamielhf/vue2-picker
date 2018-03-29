@@ -35,7 +35,7 @@ export default {
       year:1,
       month:1,
       day:1,
-
+      endTime:'',
       onOk(e){
         console.log(e)
       },
@@ -47,6 +47,13 @@ export default {
   computed:{
     isR(){
       return this.year%4==0?true:false;
+    },
+    endTimeArr(){
+        if(this.endTime){
+           return  this.endTime.split('-')
+        }else{
+            return []
+        }
     }
   },
   methods:{
@@ -72,14 +79,28 @@ export default {
       }else{
         m = [1,31];
       }
+      let mArr = [],m2 = [1,12];
+      if(this.endTimeArr){
+
+        if(this.year == + this.endTimeArr[0]){
+          m2[1] = + this.endTimeArr[1]
+
+          if(this.month== +this.endTimeArr[1]){
+            m[1] = + this.endTimeArr[2]
+          }
+
+        }
+      }
       for(let i=1;i<=m[1];i++){
         newM.push(i+'日')
       }
+      for(let i=1;i<= m2[1];i++){
+        mArr.push(i+'月')
+      }
       this.dataList[2] = newM;
-
+      this.dataList[1] = mArr;
     },
     change(val,key,type = ''){
-      console.log(val,key,type);
       if(type=='day'){
         this.day = key+1;
       }else if(type=='year'){
@@ -96,6 +117,8 @@ export default {
     },
   },
   mounted(){
+
+
     this.setMonth()
   },
   components:{

@@ -41,30 +41,37 @@ Picker.install = function (Vue) {
         })
 
 //如果是日期模式
-      console.log(settings)
       if(settings.type=='datePicker'){
-        let years = settings.years || [1950,2050];
+        let years = [1950,2050];
+        let endY = (new Date(settings.endTime)).getFullYear();
+        if(settings.endTime && endY>=years[0] &&  endY<=years[1]){
+
+          if(settings.date){
+            let e1 = new Date(settings.endTime).getTime();
+            let e2 = new Date(settings.date).getTime();
+            if(e2>e1){
+              settings.endTime = ''
+            }else{
+              years[1] = endY;
+            }
+          }else{
+            years[1] = endY;
+          }
+
+        }else{
+          settings.endTime = ''
+        }
+console.log(years)
         if(settings.date){
           let t = settings.date.split('-');
           //验证输入的年的范围是否正确
-         if(settings.years){
-           if(t[0]>=settings.years[0]&&t[0]<=settings.years[1]){
-             settings.year = +t[0];
-             settings.month = +t[1];
-             settings.day = +t[2];
-           }else if(date.getFullYear()<settings.years[0]&&date.getFullYear()>settings.years[1]){
-             years =  [1950,2050];
-           }
-         }else{
-           if(t[0]>=1950&&t[0]<=2050){
-             settings.year = +t[0];
-             settings.month = +t[1];
-             settings.day = +t[2];
-           }
-         }
-
-
+          if(t[0]>= years[0]&&t[0]<=years[1]){
+            settings.year = +t[0];
+            settings.month = +t[1];
+            settings.day = +t[2];
+          }
         }
+
 
         let months = [1,12];
         let days = [1,30];
