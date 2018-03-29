@@ -27,7 +27,7 @@ $screen: 375;
     position: absolute;
     z-index: 99;
     background: #000;
-    opacity: 0.8;
+    opacity: 0.6;
     width: 100%;
     height: 100%;
   }
@@ -50,18 +50,23 @@ $screen: 375;
     bottom: 0;
     background: #fff;
     width: 100%;
-    height:px2vw(310);
+    height:px2vw(355);
   }
 }
 .m-picker-item{
   position: relative;
   width: 100%;
-  height: px2vw(270);
+  height: px2vw(315);
   overflow: hidden;
+  .m-scroller-item-box{
+    position: relative;
+    width: 100%;
+  }
   .m-scroller-item{
     text-align: center;
-    height:px2vw(30);
-    line-height: px2vw(30);
+    font-size: px2vw(18);
+    height:px2vw(35);
+    line-height: px2vw(35);
   }
   .m-scroller-mask {
     position: absolute;
@@ -75,7 +80,7 @@ $screen: 375;
       linear-gradient(to bottom, rgba(255,255,255,0.95), rgba(255,255,255,0.6)),
       linear-gradient(to top, rgba(255,255,255,0.95), rgba(255,255,255,0.6));
     background-position: top, bottom;
-    background-size: 100% px2vw(120);
+    background-size: 100% px2vw(140);
     background-repeat: no-repeat;
   }
   .m-scroller-indicator {
@@ -83,7 +88,7 @@ $screen: 375;
     height:px2vw(30);
     position: absolute;
     left: 0;
-    top: px2vw(120);
+    top: px2vw(140);
     z-index: 2;
     box-sizing: border-box;
     background-image:
